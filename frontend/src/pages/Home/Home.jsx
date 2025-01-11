@@ -1,0 +1,23 @@
+import React from 'react';
+
+import Banner from '../../components/Banner/Banner';
+import BestSellerBooks from './BestSellerBooks';
+import FavBook from './FavBook';
+import PromoBanner from './PromoBanner';
+import OtherBooks from './OtherBooks';
+import Review from './Review';
+
+const Home = () => {
+  return (
+    <>
+      <Banner />
+      <BestSellerBooks/>
+      <FavBook/>
+      <PromoBanner/>
+      <OtherBooks/>
+      <Review/>
+    </>
+  )
+}
+
+export default Home;
