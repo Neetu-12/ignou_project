@@ -21,7 +21,7 @@ const BestSellerBooks = () => {
             }
         };
         fetchBooks();
-    }, [bookData]);
+    }, []);
 
     return (
         <div>

@@ -9,11 +9,10 @@ const ManageBook = () => {
       alert('please login or singUp First..!!!')
       nav('../login')
     }
-  }, []);
+  }, [nav]);
 
   const [allBooks, setAllBooks] = useState([]);
   const [count, setCount] = useState(0);
-  const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:4000/upload/all-books", { cookie: localStorage.getItem('token') })
       .then((response) => response.json())
@@ -22,7 +21,7 @@ const ManageBook = () => {
         setCount(count+1)
         if (!localStorage.getItem("token")) {
           alert("Please login or sign up first!");
-          navigate("../login");
+          nav("../login");
         }
         setAllBooks(data.data[0])
 
@@ -30,7 +29,7 @@ const ManageBook = () => {
       .catch((err) => {
         console.error("Error fetching books:", err); // Log the error
       });
-  }, [navigate]);
+  }, [nav,count]);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:4000/upload/book/${id}`, {
@@ -44,7 +43,6 @@ const ManageBook = () => {
     })
 
   }
-  console.log(allBooks,count);
 
   return (
     <div className='px-4 my-12'>

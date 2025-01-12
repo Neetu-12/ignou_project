@@ -19,7 +19,7 @@ const OtherBooks = () => {
             }
         };
         fetchBooks();
-    }, [bookData]);
+    }, []);
 
     return (
         <div>

@@ -9,7 +9,6 @@ const Login = () => {
 
   const submitbtn = (e, direction) => {
     e.preventDefault(); // Prevents the default form submission (page reload)
-    console.log(dataobj);
     
     axios.post('http://localhost:4000/registration',dataobj)
 
@@ -45,8 +44,8 @@ const Login = () => {
           <TextInput id="password" onChange={(e) => { setdataobj({ ...dataobj, "password": e.target.value }) }} type="password" required shadow />
         </div>
         <div className="btnfun flex text-center justify-between p-[0.8rem] ">
-          <Button onClick={(e) => { submitbtn(e, 'login') }} type="submit" className='bg-black mb-0.5 ml-1 mr-1'>Login your account</Button>
-          {/* <Button onClick={(e) => { submitbtn(e, '') }} type="submit" className='border-r-indigo-700 bg-lime-700 mb-0.5 ml-1 mr-1'>Signup your account</Button> */}
+          <Button onClick={(e) => { submitbtn(e, 'login') }} type="submit" className='bg-black mb-0.5 ml-1 mr-1'>Register your account</Button>
+          <Button onClick={(e) => { navigation(`../login`) }} type="submit" className='border-r-indigo-700 bg-lime-700 mb-0.5 ml-1 mr-1'>Back to login</Button>
           {/* <Button onClick={(e) => { submitbtn(e, 'signing') }} type="submit" className='bg-neutral-600 mb-0.5 ml-1 mr-1'>Forget email/password</Button> */}
         </div>
       </form>

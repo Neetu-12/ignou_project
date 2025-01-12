@@ -9,7 +9,7 @@ const SingleBook = () => {
       .then((response) => response.json())
       .then((result) => setLoader(result.data[0]))
       .catch((error) => console.error(error));
-  }, [])
+  }, [params])
   console.log(loader);
 
   return (

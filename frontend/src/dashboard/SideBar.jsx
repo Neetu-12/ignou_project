@@ -1,5 +1,5 @@
 import { Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiOutlineCloudUpload, HiShoppingBag, HiSupport, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
+import { HiArrowSmRight, HiChartPie, HiInbox, HiOutlineCloudUpload, HiShoppingBag, HiSupport, HiTable,  HiViewBoards } from "react-icons/hi";
 import userImg from '../images/assets/profile.jpg'
 import { useNavigate } from "react-router-dom";
 
