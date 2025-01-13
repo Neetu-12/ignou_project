@@ -21,7 +21,6 @@ const Login = () => {
       })
       .catch((error) => {
         alert(error.response.data)
-        console.log('error aa gyaa....!!');
         navigation(`../singup`)
       });
     }else if (direction === 'singup') {

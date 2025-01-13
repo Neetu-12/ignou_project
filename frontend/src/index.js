@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { UserDataContext } from './context/UserDataContext';
+import { AuthProvider } from './context/Authprovider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserDataContext>
+    <AuthProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    </UserDataContext>
+    </AuthProvider>
   </React.StrictMode>
 );
