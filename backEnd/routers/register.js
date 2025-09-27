@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const conection = require("../../dbConnection/db")
+const conection = require("../../frontend/dbConnection/db")
 
 router.post('/', (req, res) => {
     let name = req.body.name;
