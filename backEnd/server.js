@@ -13,8 +13,12 @@ app.use("/registration", require("./routers/register"));
 app.use("/user", require('./routers/login'));
 app.use("/upload", require('./routers/uploadBook'));
 
-app.get('./', (req, res) => {
+app.get('/home', (req, res) => {
     res.send("Welcome to server page.")
+});
+
+app.get('/welcome', (req, res) => {
+    res.status(200).json({message:"Welcome to eBook webssite...."})
 });
 
 app.listen(3306, () => {
