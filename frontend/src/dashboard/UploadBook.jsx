@@ -10,7 +10,7 @@ const UploadBook = () => {
       alert('please login or singUp First..!!!')
       nav('../login')
     }
-  }, []);
+  }, [nav]);
 
   const bookCatories = [
     "Mystery",
@@ -44,7 +44,7 @@ const UploadBook = () => {
     bookObject.description = form.bookDescription.value;
     bookObject.cookie = localStorage.getItem('token');
 
-    if (!!bookObject && bookObject != {} && !!localStorage.getItem('token')) {
+    if (!!bookObject && bookObject.bookTitle !== '' && !!localStorage.getItem('token')) {
       axios.post('http://localhost:4000/upload/uploadBook/', bookObject)
         .then((response) => {
           alert(response.data)

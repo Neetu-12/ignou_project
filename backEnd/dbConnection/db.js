@@ -1,16 +1,16 @@
 const mysql = require("mysql");
 const conection = mysql.createConnection({
-    host:"localhost",
-    password:"Neetu@123",
-    user:"root",
-    database:"eBookStore"
+    host: process.env.host,
+    password: process.env.DB_PASSWORD,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME
 });
 
-conection.connect((err)=>{
-    if(!err){
+conection.connect((err) => {
+    if (!err) {
         console.log("Connected with db.")
     }
-    else{
+    else {
         console.log(err);
     }
 });

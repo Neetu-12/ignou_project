@@ -1,19 +1,23 @@
 import { Table } from 'flowbite-react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/Authprovider';
 
 const ManageBook = () => {
+  const isAuthenticated = useContext(AuthContext);
+  console.log(isAuthenticated, 'isAuthenticated....');
+  
+
   let nav = useNavigate();
-  useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      alert('please login or singUp First..!!!')
-      nav('../login')
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!localStorage.getItem('token')) {
+  //     alert('please login or singUp First..!!!')
+  //     nav('../login')
+  //   }
+  // }, [nav]);
 
   const [allBooks, setAllBooks] = useState([]);
   const [count, setCount] = useState(0);
-  const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:4000/upload/all-books", { cookie: localStorage.getItem('token') })
       .then((response) => response.json())
@@ -22,15 +26,17 @@ const ManageBook = () => {
         setCount(count+1)
         if (!localStorage.getItem("token")) {
           alert("Please login or sign up first!");
-          navigate("../login");
+          nav("../login");
         }
+        console.log(data.data[0]);
+        
         setAllBooks(data.data[0])
 
       })
       .catch((err) => {
         console.error("Error fetching books:", err); // Log the error
       });
-  }, [navigate]);
+  }, [nav]);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:4000/upload/book/${id}`, {
@@ -44,7 +50,6 @@ const ManageBook = () => {
     })
 
   }
-  console.log(allBooks,count);
 
   return (
     <div className='px-4 my-12'>

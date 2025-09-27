@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 
 const EditBooks = () => {
@@ -13,7 +13,7 @@ const EditBooks = () => {
             .then((response) => response.json())
             .then((result) => setLoader(result.data[0]))
             .catch((error) => console.error(error));
-    }, []);
+    }, [params]);
     const bookCatories = [
         "Mystery",
         "Fiction",

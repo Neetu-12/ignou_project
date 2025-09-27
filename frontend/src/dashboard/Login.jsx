@@ -4,6 +4,7 @@ import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
+  
   const navigation = useNavigate();
   const [dataobj, setdataobj] = useState({})
 
@@ -20,9 +21,10 @@ const Login = () => {
       })
       .catch((error) => {
         alert(error.response.data)
-        console.log('error aa gyaa....!!');
         navigation(`../singup`)
       });
+    }else if (direction === 'singup') {
+      navigation(`../singup`)
     }else{
       alert('Fill information correctly')
     }

@@ -8,7 +8,7 @@ const UserDasbord = () => {
             alert('please login or singUp First..!!!')
             nav('../login')
         }
-    }, [])
+    }, [nav])
     
   return (
     <div className='min-h-svh'>UserDasbord</div>
