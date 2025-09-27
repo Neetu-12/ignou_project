@@ -17,8 +17,8 @@ app.get('./', (req, res) => {
     res.send("Welcome to server page.")
 });
 
-app.listen(4000, () => {
-    console.log("Running at port 4000");
+app.listen(3306, () => {
+    console.log("Running at port 3306");
 });
 
 
