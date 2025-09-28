@@ -19,7 +19,7 @@ const ManageBook = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [count, setCount] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:4000/upload/all-books", { cookie: localStorage.getItem('token') })
+    fetch("http://localhost:3306/upload/all-books", { cookie: localStorage.getItem('token') })
       .then((response) => response.json())
       .then((data) => {
         // console.log(localStorage.token);
@@ -39,7 +39,7 @@ const ManageBook = () => {
   }, [nav]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:4000/upload/book/${id}`, {
+    fetch(`http://localhost:3306/upload/book/${id}`, {
       method: "DELETE"
     }).then(res => res.json()).then(data => {
       alert("Book is deleted successfully!")
