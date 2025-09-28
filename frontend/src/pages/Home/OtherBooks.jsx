@@ -7,7 +7,7 @@ const OtherBooks = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await fetch('http://localhost:4000/upload/all-books');
+                const response = await fetch('http://localhost:3306/upload/all-books');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

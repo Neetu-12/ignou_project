@@ -10,7 +10,7 @@ const Login = () => {
   const submitbtn = (e, direction) => {
     e.preventDefault(); // Prevents the default form submission (page reload)
     
-    axios.post('http://localhost:4000/registration',dataobj)
+    axios.post('http://localhost:3306/registration',dataobj)
 
     .then((response) => {
       alert(response.data)

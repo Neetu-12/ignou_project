@@ -5,7 +5,7 @@ const Shop = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/upload/all-books").then(res => res.json()).then(data => setBooks(data.data));
+    fetch("http://localhost:3306/upload/all-books").then(res => res.json()).then(data => setBooks(data.data));
   }, []);
 
   return (

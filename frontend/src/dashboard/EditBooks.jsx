@@ -9,7 +9,7 @@ const EditBooks = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:4000/upload/books/${params.id}`, { method: "GET" })
+        fetch(`http://localhost:3306/upload/books/${params.id}`, { method: "GET" })
             .then((response) => response.json())
             .then((result) => setLoader(result.data[0]))
             .catch((error) => console.error(error));
@@ -45,7 +45,7 @@ const EditBooks = () => {
         updatedBookObj.cookie = localStorage.getItem('token');
 
         // Perform the fetch request
-        fetch(`http://localhost:4000/upload/book/${params.id}`, {
+        fetch(`http://localhost:3306/upload/book/${params.id}`, {
 
             method: "PATCH",
             headers: {
