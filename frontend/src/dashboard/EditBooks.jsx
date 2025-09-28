@@ -9,7 +9,7 @@ const EditBooks = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:3306/upload/books/${params.id}`, { method: "GET" })
+        fetch(`https://ignou-project-4.onrender.com/upload/books/${params.id}`, { method: "GET" })
             .then((response) => response.json())
             .then((result) => setLoader(result.data[0]))
             .catch((error) => console.error(error));
@@ -45,7 +45,7 @@ const EditBooks = () => {
         updatedBookObj.cookie = localStorage.getItem('token');
 
         // Perform the fetch request
-        fetch(`http://localhost:3306/upload/book/${params.id}`, {
+        fetch(`https://ignou-project-4.onrender.com/upload/book/${params.id}`, {
 
             method: "PATCH",
             headers: {

@@ -5,7 +5,7 @@ const SingleBook = () => {
   const [loader, setLoader] = useState({});
   const params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:3306/upload/books/${params.id}`, { method: "GET" })
+    fetch(`https://ignou-project-4.onrender.com/upload/books/${params.id}`, { method: "GET" })
       .then((response) => response.json())
       .then((result) => setLoader(result.data[0]))
       .catch((error) => console.error(error));
