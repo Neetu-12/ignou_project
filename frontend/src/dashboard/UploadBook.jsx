@@ -45,7 +45,7 @@ const UploadBook = () => {
     bookObject.cookie = localStorage.getItem('token');
 
     if (!!bookObject && bookObject.bookTitle !== '' && !!localStorage.getItem('token')) {
-      axios.post('https://ignou-project-4.onrender.com/upload/uploadBook/', bookObject)
+      axios.post('http://localhost:4000/upload/uploadBook/', bookObject)
         .then((response) => {
           alert(response.data)
           nav('../')

@@ -21,8 +21,8 @@ app.get('/welcome', (req, res) => {
     res.status(200).json({message:"Welcome to eBook webssite...."})
 });
 
-app.listen(3306, () => {
-    console.log("Running at port 3306");
+app.listen(4000, () => {
+    console.log("Running at port 4000");
 });
 
 

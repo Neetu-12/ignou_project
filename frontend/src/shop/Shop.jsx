@@ -1,34 +1,71 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Card } from "flowbite-react";
+import localBookData from "../bookData.json"; // <-- your fallback file
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   const [books, setBooks] = useState([]);
+  const [isDBConnected, setIsDBConnected] = useState(false);
+  const navigate = useNavigate();
 
+  const handleBuyNow = () => {
+    // You can pass state or query params if needed
+    navigate('/payment');
+  };
+  
   useEffect(() => {
-    fetch("https://ignou-project-4.onrender.com/upload/all-books").then(res => res.json()).then(data => setBooks(data.data));
+    const fetchBooks = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/upload/all-books");
+
+        // if server didn't respond properly
+        if (!res.ok) {
+          throw new Error("Failed to connect with DB");
+        }
+
+        const data = await res.json();
+
+        // if data structure is correct
+        if (data?.data?.length > 0) {
+          setBooks(data.data);
+          setIsDBConnected(true);
+        } else {
+          throw new Error("Empty or invalid DB data");
+        }
+      } catch (err) {
+        console.warn("⚠️ Using local JSON data:", err.message);
+        setBooks(localBookData);
+        setIsDBConnected(false);
+      }
+    };
+
+    fetchBooks();
   }, []);
 
   return (
-    <div className='mt-28 px-4 lg:px24'>
-      <h2 className='text-5xl font-bold text-center '>All books are here !</h2>
-      <div className='grid gap-8 my-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1'>
-        {
-          books.map(
-            books => <Card >
-              <img src={books.imgUrl} alt="" className='h-96'/>
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-               <p>{books.bookTitle}</p>
-              </h5>
-              <p className="font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-              </p>
-              <button className='bg-blue-700 font-semibold text-white py-2  rounded'> Buy Now</button>
-            </Card>
-          )
-        }
+    <div className="mt-28 px-4 lg:px-24">
+      <h2 className="text-5xl font-bold text-center">
+        {isDBConnected ? "Books from Database" : "Books from Local Data"}
+      </h2>
+
+      <div className="grid gap-8 my-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1">
+        {books.map((book, index) => (
+          <Card key={index}>
+            <img src={book.imgUrl} alt={book.bookTitle} className="h-96" />
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {book.bookTitle}
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {book.description || "No description available"}
+            </p>
+            <button className="bg-blue-700 font-semibold text-white py-2 rounded" onClick={handleBuyNow}>
+              Buy Now
+            </button>
+          </Card>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Shop;

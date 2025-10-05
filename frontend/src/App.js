@@ -17,6 +17,7 @@ import EditBooks from "./dashboard/EditBooks";
 import SideBar from './dashboard/SideBar';
 import Singup from "./dashboard/Singup";
 import Login from "./dashboard/Login";
+import PaymentButton from "./components/payment/PayMentByRozerPay.jsx";
 
 function App() {
   const adminRoutes = [
@@ -45,6 +46,7 @@ function App() {
               <Route path="/details/book/:id" element={<BookDetails />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/userDasbord" element={<UserDasbord />} />
+              <Route path="/payment" element={<PaymentButton />} />
               {adminRoutes.map((route, index) => {
                 return <Route path={route.path} key={index} element={<route.element />} />
               })}

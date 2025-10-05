@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const conection = require("../dbConnection/db");
+const connection = require("../dbConnection/db");
 const createToken = require("../verificationJwt/createToken");
 const verifyToken = require("../verificationJwt/verifyToken");
 
@@ -8,14 +8,14 @@ router.post('/uploadBook', verifyToken, (req, res) => {
     const { bookTitle, authorName, category, imgUrl, bookPdfUrl, description } = req.body;
     const userId = req.body.meta.userId;
     if (userId) {
-        conection.query(`select * from books where email='${userId}';`, () => {
+        connection.query(`select * from books where email='${userId}';`, () => {
             if (0 > req.body.userId) {
                 res.send("Not exist")
             }
             else {
 
-                // conection.query(`insert into books( bookTitle, authorName, category, imgUrl, bookPdfUrl, description, userId)values ( '${bookTitle}', '${authorName}', '${category}','${imgUrl}', '${bookPdfUrl}', ${description},  '${userId}');`, (err, data) => {
-                conection.query(`INSERT INTO books (bookTitle, authorName, category, imgUrl, bookPdfUrl, description, userId) VALUES ('${bookTitle}', '${authorName}', '${category}','${imgUrl}', '${bookPdfUrl}', '${description}',  '${userId}');`, (err, data) => {
+                // connection.query(`insert into books( bookTitle, authorName, category, imgUrl, bookPdfUrl, description, userId)values ( '${bookTitle}', '${authorName}', '${category}','${imgUrl}', '${bookPdfUrl}', ${description},  '${userId}');`, (err, data) => {
+                connection.query(`INSERT INTO books (bookTitle, authorName, category, imgUrl, bookPdfUrl, description, userId) VALUES ('${bookTitle}', '${authorName}', '${category}','${imgUrl}', '${bookPdfUrl}', '${description}',  '${userId}');`, (err, data) => {
                     if (!err) {
                         res.status(200).send("Successfully inserted books info.")
                     }
@@ -42,7 +42,7 @@ router.get("/all-books/:category", (req, res) => {
     // Check if the 'category' parameter exists
     if (cagtegory) {
         // Perform the query to fetch books based on category
-        conection.query('SELECT * FROM books WHERE cagtegory = ?;', [cagtegory], (err, data) => {
+        connection.query('SELECT * FROM books WHERE cagtegory = ?;', [cagtegory], (err, data) => {
             if (err) {
                 return res.status(500).send("An error occurred while fetching books.");
             }
@@ -65,7 +65,7 @@ router.get("/all-books/category/:category", (req, res) => {
     // Check if the 'category' parameter exists
     if (category) {
         // Perform the query to fetch books based on category
-        conection.query(`SELECT * FROM books WHERE category like ?;`, [`%${category}%`], (err, data) => {
+        connection.query(`SELECT * FROM books WHERE category like ?;`, [`%${category}%`], (err, data) => {
             if (err) {
                 return res.status(500).send("An error occurred while fetching books.");
             }
@@ -86,7 +86,7 @@ router.get("/all-books", (req, res) => {
     const { userId } = req.query;
 
     // Perform the query to fetch all books (userId is not needed for this query)
-    conection.query(`SELECT * FROM books;`, (err, data) => {
+    connection.query(`SELECT * FROM books;`, (err, data) => {
 
         if (err) {
             // If an error occurs, send a 500 status code with an error message
@@ -108,14 +108,14 @@ router.patch('/book/:id', verifyToken, (req, res) => {
 
     // checking user behalf of book Id
     const userQuery = `select * from books where id = ? `
-    conection.query(userQuery, [id], (err, result) => {
+    connection.query(userQuery, [id], (err, result) => {
         if (result[0].userId == userId) {
             // SQL query updated to include all the fields
             const query = `UPDATE books 
                            SET bookTitle = ?, authorName = ?, category = ?, imgUrl = ?, bookPdfUrl = ? 
                            WHERE id = ? and userId = ?;`;
 
-            conection.query(query, [bookTitle, authorName, category, imgUrl, bookPdfUrl, id, userId], (err, result) => {
+            connection.query(query, [bookTitle, authorName, category, imgUrl, bookPdfUrl, id, userId], (err, result) => {
 
                 if (err) {
                     res.status(500).send({ error: err.message });
@@ -136,7 +136,7 @@ router.patch('/book/:id', verifyToken, (req, res) => {
 router.delete('/book/:id', (req, res) => {
     const id = req.params.id;
     // DELETE FROM table_name WHERE condition;
-    conection.query(`delete from books where id=${id};`, (err, result) => {
+    connection.query(`delete from books where id=${id};`, (err, result) => {
         if (err) {
             res.status(500).send({ error: err.message });
         }
@@ -150,7 +150,7 @@ router.delete('/book/:id', (req, res) => {
 router.get("/books/:id", (req, res) => {
     const { id } = req.params;
     if (id) {
-        conection.query(`SELECT * FROM books WHERE id=${id}`, (err, data) => {
+        connection.query(`SELECT * FROM books WHERE id=${id}`, (err, data) => {
             if (err) {
                 return res.status(500).send("An error occurred while fetching books.");
             }

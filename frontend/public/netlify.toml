@@ -1,0 +1,7 @@
+[[reidirects]]
+from="/*"
+to="index.html"
+status=200
+command = "npm run build"
+publish = "build"
+NODE_VERSION = "20.11.1"

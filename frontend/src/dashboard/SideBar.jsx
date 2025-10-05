@@ -8,7 +8,7 @@ const SideBar = () => {
   return (
     <div className=" mt-[40px] mr-[40px] ">
       <Sidebar aria-label="Sidebar with content separator example ">
-        <Sidebar.Logo href="#" img={userImg} imgAlt="Flowbite logo">
+        <Sidebar.Logo href="/" img={userImg} imgAlt="Flowbite logo">
           <p>Profile</p>
         </Sidebar.Logo>
         <Sidebar.Items>
