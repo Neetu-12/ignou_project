@@ -13,16 +13,12 @@ app.use("/registration", require("./routers/register"));
 app.use("/user", require('./routers/login'));
 app.use("/upload", require('./routers/uploadBook'));
 
-app.get('/home', (req, res) => {
-    res.send("Welcome to server page.")
-});
-
-app.get('/welcome', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({message:"Welcome to eBook webssite...."})
 });
 
-app.listen(4000, () => {
-    console.log("Running at port 4000");
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+    console.log(`Running at port ${PORT}`);
 });
-
-
