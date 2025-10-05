@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault(); // Prevents the default form submission (page reload)
     
     if (!!dataobj.email && !!dataobj.password && direction === 'login') {
-      axios.post('http://localhost:4000/user/login/',dataobj)
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}/user/login/`,dataobj)
       .then((response) => {
         localStorage.setItem('token',response.data.token)        
         alert(response.data.result)

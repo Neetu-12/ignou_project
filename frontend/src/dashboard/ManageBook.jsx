@@ -19,7 +19,7 @@ const ManageBook = () => {
       return;
     }
 
-    fetch("http://localhost:4000/upload/all-books", {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/upload/all-books`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -35,7 +35,7 @@ const ManageBook = () => {
   }, [nav]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:4000/upload/book/${id}`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/upload/book/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

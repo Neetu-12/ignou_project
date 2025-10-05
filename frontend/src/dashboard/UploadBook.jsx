@@ -45,7 +45,7 @@ const UploadBook = () => {
     bookObject.cookie = localStorage.getItem('token');
 
     if (!!bookObject && bookObject.bookTitle !== '' && !!localStorage.getItem('token')) {
-      axios.post('http://localhost:4000/upload/uploadBook/', bookObject)
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}/upload/uploadBook/`, bookObject)
         .then((response) => {
           alert(response.data)
           nav('../')

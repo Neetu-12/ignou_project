@@ -16,7 +16,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await fetch("http://localhost:4000/upload/all-books");
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/upload/all-books`);
 
         // if server didn't respond properly
         if (!res.ok) {

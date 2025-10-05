@@ -8,7 +8,7 @@ const BestSellerBooks = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await fetch('http://localhost:4000/upload/all-books');
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/upload/all-books`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

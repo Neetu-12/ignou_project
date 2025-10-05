@@ -5,7 +5,7 @@ const SingleBook = () => {
   const [loader, setLoader] = useState({});
   const params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:4000/upload/books/${params.id}`, { method: "GET" })
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/upload/books/${params.id}`, { method: "GET" })
       .then((response) => response.json())
       .then((result) => setLoader(result.data[0]))
       .catch((error) => console.error(error));
