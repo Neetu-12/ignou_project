@@ -43,7 +43,7 @@ const Navbar = () => {
     { link: "Home", path: "/" },
     { link: "About", path: "/about" },
     { link: "Shop", path: "/shop" },
-    { link: "userdasbord", path: "/admin/dashboard" },
+    { link: "userdashboard", path: "/admin/dashboard" },
     { link: "Login", path: "./login" },
   ];
 

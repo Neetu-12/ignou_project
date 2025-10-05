@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const conection = require("../dbConnection/db")
+const connection = require("../dbConnection/db")
 
 router.post('/', (req, res) => {
     let name = req.body.name;
@@ -9,12 +9,12 @@ router.post('/', (req, res) => {
 
     if (password && email) {
         
-        conection.query(`select * from user where email='${email}';`, (err, data) => {
+        connection.query(`select * from user where email='${email}';`, (err, data) => {
             if (data.length > 0) {
                 res.send("exist")
             }
             else {
-                conection.query(`insert into user( name, password, email)values ( '${name}', '${password}', '${email}');`, (err, data) => {
+                connection.query(`insert into user( name, password, email)values ( '${name}', '${password}', '${email}');`, (err, data) => {
                     if (!err) {
                         res.status(200).send("Successfully registered")
                     }

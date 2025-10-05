@@ -1,14 +1,17 @@
 const express = require("express");
 const router = express.Router();
-// const conection = require("../dbConnection/db");
+const connection = require("../dbConnection/db");
 const createToken = require("../verificationJwt/createToken");
 const verifyToken = require("../verificationJwt/verifyToken");
 
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;     
+    console.log(email, password );
+    
     if (email && password) {
-        conection.query(`select * from user where email='${email}';`, (err, data) => {
+        connection.query(`select * from user where email='${email}';`, (err, data) => {
+            console.log(data);
             
             if (data[0]) {
                 if (data[0].password == password) {
