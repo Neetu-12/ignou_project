@@ -59,20 +59,22 @@ const Navbar = () => {
           <ul className='md:flex space-x-12 hidden'>
             {navItem.map(({ link, path }) => (
               <li key={path} className="">
-                {alreadyLogin && link === 'Loging' ? (
+                {alreadyLogin && link === 'Login' ? (
                   <Link
                     onClick={() => {
                       localStorage.removeItem('token');
                       nav('./login')
                       window.location.reload();
-                      
+
                     }}
                     className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
                   >
                     LogOut
                   </Link>
                 ) : (
-                  <Link to={path} className="block text-base text-black uppercase cursor-pointer hover:text-blue-700">
+                  <Link to={path}
+                    onClick={() => setIsMenuOpen(false)} // Close menu on click
+                    className="block text-base text-black uppercase cursor-pointer hover:text-blue-700">
                     {link}
                   </Link>
                 )}
@@ -103,7 +105,7 @@ const Navbar = () => {
             navItem.map(({ link, path }) => (
               <li key={path} className="">
                 {
-                  (!alreadyLogin || link !== 'Loging') ?
+                  (!alreadyLogin || link !== 'Login') ?
                     <Link to={path} className='block text-base text-white uppercase cursor-pointer hover:text-blue-300'>
                       {link}
                     </Link> :
