@@ -62,7 +62,7 @@ const Shop = () => {
               Buy Now
             </button>
           </Card>
-        ))}
+        ))} 
       </div>
     </div>
   );

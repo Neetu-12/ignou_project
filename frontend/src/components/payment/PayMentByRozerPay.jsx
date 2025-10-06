@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PaymentForm = () => {
     const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const PaymentForm = () => {
         cvv: "",
         amount: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,6 +19,7 @@ const PaymentForm = () => {
         e.preventDefault();
         console.log("Payment data:", formData);
         alert("Payment submitted!");
+        navigate('/');
     };
 
     return (
